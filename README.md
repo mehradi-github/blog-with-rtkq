@@ -2,6 +2,7 @@
 The Blog is built with [Redux toolkit](https://redux-toolkit.js.org/introduction/getting-started) and [RTK Query](https://redux-toolkit.js.org/rtk-query/overview).
 
 - [Installing Requirements](#installing-requirements)
+- [Simulating data via MSW](#simulating-data-via-msw)
 
 
 ## Installing Requirements
@@ -30,3 +31,5 @@ npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library
 # git remote set url
 git remote set-url origin git@github.com:mehradi-github/ref-blog-with-rtkq.git
 ```
+## Simulating data via MSW
+Mock by intercepting requests on the network level: [Simulating data from server](https://github.com/mehradi-github/ref-cafe-msw#simulating-data-from-server)
