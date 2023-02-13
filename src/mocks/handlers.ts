@@ -1,9 +1,9 @@
 import { rest } from 'msw';
-import { createEntityAdapter } from '@reduxjs/toolkit';
+import { createEntityAdapter, nanoid } from '@reduxjs/toolkit';
 import { Post } from '../app/services/posts';
 
 const adapter = createEntityAdapter<Post>();
-
+const token = nanoid();
 let state = adapter.getInitialState();
 state = adapter.setAll(state, [
   { id: 1, name: 'A sample post 1', fetched_at: new Date().toUTCString() },
@@ -12,6 +12,17 @@ state = adapter.setAll(state, [
 
 export { state };
 export const handlers = [
+  rest.post('/login', (req, res, ctx) => {
+    return res.once(ctx.json({ message: 'I fail once.' }), ctx.status(500));
+  }),
+  rest.post('/login', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        token,
+        user: { first_name: 'firstName', last_name: 'lastName' },
+      })
+    );
+  }),
   rest.get('/posts', (req, res, ctx) => {
     return res(ctx.json(Object.values(state.entities)));
   }),
