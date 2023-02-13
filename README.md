@@ -1,9 +1,22 @@
 
 The Blog is built with [Redux toolkit](https://redux-toolkit.js.org/introduction/getting-started) and [RTK Query](https://redux-toolkit.js.org/rtk-query/overview).
 
+- [Store Setup with configureStore](#store-setup-with-configurestore)
+- [Defining Mutation Endpoints](#defining-mutation-endpoints)
 - [Installing Requirements](#installing-requirements)
 - [Simulating data via MSW](#simulating-data-via-msw)
 
+
+## Store Setup with configureStore
+Every Redux app needs to [configure and create a Redux store](https://redux-toolkit.js.org/usage/usage-guide#store-setup). This usually involves several steps:
+
+- Importing or creating the root reducer function
+- Setting up middleware, likely including at least one middleware to handle asynchronous logic
+- Configuring the Redux DevTools Extension
+- Possibly altering some of the logic based on whether the application is being built for development or production
+
+## Defining Mutation Endpoints
+[Mutation endpoints](https://redux-toolkit.js.org/rtk-query/usage/mutations) are defined by returning an object inside the endpoints section of createApi, and defining the fields using the build.mutation() method.
 
 ## Installing Requirements
 
