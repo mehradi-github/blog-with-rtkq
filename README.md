@@ -1,10 +1,12 @@
 
+# Blog with RTK Query
 The Blog is built with [Redux toolkit](https://redux-toolkit.js.org/introduction/getting-started) and [RTK Query](https://redux-toolkit.js.org/rtk-query/overview).
 
-- [Store Setup with configureStore](#store-setup-with-configurestore)
-- [Defining Mutation Endpoints](#defining-mutation-endpoints)
-- [Installing Requirements](#installing-requirements)
-- [Simulating data via MSW](#simulating-data-via-msw)
+- [Blog with RTK Query](#blog-with-rtk-query)
+  - [Store Setup with configureStore](#store-setup-with-configurestore)
+  - [Defining Mutation Endpoints](#defining-mutation-endpoints)
+  - [Installing Requirements](#installing-requirements)
+  - [Simulating data via MSW](#simulating-data-via-msw)
 
 
 ## Store Setup with configureStore
