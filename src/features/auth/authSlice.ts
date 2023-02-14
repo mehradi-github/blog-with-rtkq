@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '../../app/services/posts';
-import { userApi } from '../../app/services/user';
+import { authApi, User } from './authApi';
+import { RootState } from '../../app/store';
 
 const initialState = {
   user: null,
@@ -16,16 +16,21 @@ export const authSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addMatcher(userApi.endpoints.login.matchPending, (state, action) => {
+      .addMatcher(authApi.endpoints.login.matchPending, (state, action) => {
         console.log('pending', action);
       })
-      .addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
+      .addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
         console.log('fulfilled', action);
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
-      .addMatcher(userApi.endpoints.login.matchRejected, (state, action) => {
+      .addMatcher(authApi.endpoints.login.matchRejected, (state, action) => {
         console.log('rejected', action);
       });
   },
 });
+
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;
+export const selectIsAuthenticated = (state: RootState) =>
+  state.auth.isAuthenticated;

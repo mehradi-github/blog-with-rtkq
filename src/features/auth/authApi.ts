@@ -1,5 +1,5 @@
 import { retry } from '@reduxjs/toolkit/dist/query';
-import { api } from './api';
+import { api } from '../../app/services/api';
 
 export interface User {
   first_name: string;
@@ -7,7 +7,7 @@ export interface User {
   email: string;
 }
 
-export const userApi = api.injectEndpoints({
+export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
     login: build.mutation<{ token: string; user: User }, any>({
       query: (credentials: any) => ({
@@ -27,4 +27,4 @@ export const userApi = api.injectEndpoints({
 export const {
   useLoginMutation,
   endpoints: { login },
-} = userApi;
+} = authApi;

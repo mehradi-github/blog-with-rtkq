@@ -7,6 +7,7 @@ import {
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import counterReducer from '../features/counter/counterSlice';
 import { api } from './services/api';
+import auth from '../features/auth/authSlice';
 
 // export const createStore = (
 //   options?: ConfigureStoreOptions['preloadedState'] | undefined
@@ -14,6 +15,7 @@ import { api } from './services/api';
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
+    auth,
     counter: counterReducer,
   },
   middleware: (getDefaultMiddleware) =>

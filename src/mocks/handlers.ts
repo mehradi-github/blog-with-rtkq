@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 import { createEntityAdapter, nanoid } from '@reduxjs/toolkit';
-import { Post } from '../app/services/posts';
+import { Post } from '../features/post/postApi';
 
 const adapter = createEntityAdapter<Post>();
 const token = nanoid();
