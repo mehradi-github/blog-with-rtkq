@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { worker } from './mocks/browser';
+import { BrowserRouter } from 'react-router-dom';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start();
@@ -16,7 +17,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

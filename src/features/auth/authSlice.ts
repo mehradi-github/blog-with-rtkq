@@ -23,6 +23,7 @@ export const authSlice = createSlice({
         console.log('fulfilled', action);
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.isAuthenticated = true;
       })
       .addMatcher(authApi.endpoints.login.matchRejected, (state, action) => {
         console.log('rejected', action);
