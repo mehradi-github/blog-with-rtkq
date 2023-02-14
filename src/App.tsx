@@ -4,7 +4,7 @@ import { Counter } from './features/counter/Counter';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import PostsManager from './features/post/PostsManager';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,10 +32,14 @@ function App() {
           <MDBNavbarBrand href="/">Post Manager</MDBNavbarBrand>
           <MDBNavbarNav className="me-auto">
             <MDBNavbarItem>
-              <MDBNavbarLink href="/">Home</MDBNavbarLink>
+              <NavLink className="nav-item nav-link" to="/">
+                Home
+              </NavLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href="/counter">Counter</MDBNavbarLink>
+              <NavLink className="nav-item nav-link" to="/counter">
+                Counter
+              </NavLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
           <div className="d-flex input-group w-auto">
