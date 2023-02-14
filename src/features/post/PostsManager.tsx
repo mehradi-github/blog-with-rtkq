@@ -1,4 +1,5 @@
 import React, { FC, Fragment } from 'react';
+import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from '../auth/authApi';
 import { logout, selectIsAuthenticated } from '../auth/authSlice';
@@ -11,8 +12,8 @@ const PostsManager: FC = () => {
     <Fragment>
       <h3>Posts</h3>
       {!isAuthenticated ? (
-        <button
-          className=""
+        <Button
+          variant="primary"
           aria-label="Login"
           onClick={() => {
             login({ ignore: 'This will just set the headers' });
@@ -20,17 +21,17 @@ const PostsManager: FC = () => {
         >
           {' '}
           Login
-        </button>
+        </Button>
       ) : (
-        <button
-          className=""
+        <Button
+          variant="danger"
           aria-label="Logout"
           onClick={() => {
             dispatch(logout());
           }}
         >
           Logout
-        </button>
+        </Button>
       )}
     </Fragment>
   );

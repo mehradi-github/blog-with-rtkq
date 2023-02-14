@@ -25,6 +25,9 @@ Every Redux app needs to [configure and create a Redux store](https://redux-tool
 ```bash
 # Redux + TypeScript template
 npx create-react-app blog-with-rtkq --template redux-typescript
+
+# React Bootstrap
+npm install react-bootstrap bootstrap
 ```
 ```javascript
 # npm start runs a server on port 3001

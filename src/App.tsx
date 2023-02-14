@@ -4,7 +4,7 @@ import { Counter } from './features/counter/Counter';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import PostsManager from './features/post/PostsManager';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div>
