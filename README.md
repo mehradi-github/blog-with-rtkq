@@ -21,15 +21,30 @@ Every Redux app needs to [configure and create a Redux store](https://redux-tool
 [Mutation endpoints](https://redux-toolkit.js.org/rtk-query/usage/mutations) are defined by returning an object inside the endpoints section of createApi, and defining the fields using the build.mutation() method.
 
 ## Installing Requirements
-
+ Material Design for Bootstrap v5 via [mdbootstrap](https://mdbootstrap.com/docs/react/getting-started/installation/). 
 ```bash
 # Redux + TypeScript template
 npx create-react-app blog-with-rtkq --template redux-typescript
 
-# React Bootstrap
-npm install react-bootstrap bootstrap
+# mdbootstrap 
+npm install mdb-react-ui-kit @fortawesome/fontawesome-free
+mkdir -pv typings/mdb-react-ui-kit && touch typings/mdb-react-ui-kit/index.d.ts
+
 ```
+
 ```javascript
+// typings/mdb-react-ui-kit/index.d.ts
+declaration module 'mdb-react-ui-kit'{
+  // you can find types inside node_modules/mdb-react-ui-kit/dist/index.d.ts. You have to copy everything to declaration module for mdb-react-ui-kit without export {...} at the bottom of the page.
+}
+// tsconfig.json
+{
+  "compilerOptions": {
+  ...,
+  "typeRoots": ["./node_modules/@types", "./typings"]
+  },
+}
+
 # npm start runs a server on port 3001
 "scripts": {
     "start": "set PORT=3001 && react-scripts start",
