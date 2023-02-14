@@ -48,3 +48,8 @@ git remote set-url origin git@github.com:mehradi-github/ref-blog-with-rtkq.git
 ```
 ## Simulating data via MSW
 Mock by intercepting requests on the network level: [Simulating data from server](https://github.com/mehradi-github/ref-cafe-msw#simulating-data-from-server)
+
+Mock Service Worker operates client-side by registering a Service Worker responsible for requests interception. However, we don't have to write any of the worker's code by ourselves, but rather copy the worker file distributed by the library. Mock Service Worker provides a dedicated CLI to help us do that.([Integrate Browser](https://mswjs.io/docs/getting-started/integrate/browser))
+```bash
+npx msw init public/ --save
+```

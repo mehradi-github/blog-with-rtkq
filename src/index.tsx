@@ -5,25 +5,22 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { worker } from '../mocks/browser';
+import { worker } from './mocks/browser';
 
-async function render() {
-  if (process.env.NODE_ENV === 'development') {
-    await worker.start();
-  }
-
-  const container = document.getElementById('root') as HTMLElement;
-  const root = createRoot(container);
-
-  root.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
-  );
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
 }
-render();
+const container = document.getElementById('root') as HTMLElement;
+const root = createRoot(container);
+
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

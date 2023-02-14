@@ -23,7 +23,7 @@ export const handlers = [
       })
     );
   }),
-  rest.get('/posts', (req, res, ctx) => {
-    return res(ctx.json(Object.values(state.entities)));
-  }),
+  // rest.get('/posts', (req, res, ctx) => {
+  //   return res(ctx.json(Object.values(state.entities)));
+  // }),
 ];

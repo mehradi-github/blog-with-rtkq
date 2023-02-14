@@ -52,5 +52,8 @@
     "eslint-plugin-testing-library": "^5.10.1",
     "msw": "^1.0.1",
     "prettier": "^2.8.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
