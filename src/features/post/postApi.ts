@@ -18,6 +18,14 @@ export const postApi = api.injectEndpoints({
         { type: 'Posts' as const, id: 'LIST' },
       ],
     }),
+    addPost: build.mutation<Post, Partial<Post>>({
+      query: (data) => ({
+        url: `posts`,
+        method: 'POST',
+        data,
+      }),
+      invalidatesTags: [{ type: 'Posts', id: 'LIST' }],
+    }),
   }),
 });
 
