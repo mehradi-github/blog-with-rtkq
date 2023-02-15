@@ -1,6 +1,61 @@
 import React, { FC, Fragment } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Post, useGetPostsQuery } from './postApi';
+
+const ListItem = ({
+  data: { id, title, body },
+  onSelect,
+}: {
+  data: Post;
+  onSelect: (id: number) => void;
+}) => {
+  return (
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{body}</p>
+      </div>
+      <button
+        type="button"
+        className="btn btn-link"
+        data-mdb-ripple-color="dark"
+        onClick={() => onSelect(id)}
+      >
+        Read More
+      </button>
+    </div>
+  );
+};
+
+const List = () => {
+  const { data: posts, isLoading } = useGetPostsQuery();
+  const navigate = useNavigate();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+  console.log(posts);
+  if (!posts) {
+    return <div>No Posts!</div>;
+  }
+  return (
+    <div>
+      {posts.map((post) => (
+        <ListItem
+          key={post.id}
+          data={post}
+          onSelect={(id) => navigate(`/${id}`)}
+        />
+      ))}
+    </div>
+  );
+};
 
 const PostList: FC = () => {
-  return <Fragment></Fragment>;
+  return (
+    <Fragment>
+      <List />
+    </Fragment>
+  );
 };
 export default PostList;
