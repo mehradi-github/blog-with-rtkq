@@ -27,9 +27,9 @@ let startingId = 3;
 export { state };
 
 export const handlers = [
-  rest.post('/login', (req, res, ctx) => {
-    return res.once(ctx.json({ message: 'I fail once.' }), ctx.status(500));
-  }),
+  // rest.post('/login', (req, res, ctx) => {
+  //   return res.once(ctx.json({ message: 'I fail once.' }), ctx.status(500));
+  // }),
   rest.post('/login', (req, res, ctx) => {
     return res(
       ctx.json({
@@ -41,11 +41,11 @@ export const handlers = [
   rest.get('/posts', (req, res, ctx) => {
     return res(ctx.json(Object.values(state.entities)));
   }),
-  rest.post('/posts', (req, res, ctx) => {
-    const post = req.json() as Partial<Post>;
-    ++startingId;
+  rest.post('/posts', async (req, res, ctx) => {
+    const post = (await req.json()) as Partial<Post>;
+    startingId += 1;
     state = adapter.addOne(state, { ...post, id: startingId } as Post);
-    console.log(state);
+    // console.log(state);
     return res(ctx.json(Object.values(state.entities)), ctx.delay(400));
   }),
 ];

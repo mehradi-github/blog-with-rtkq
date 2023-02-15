@@ -3,9 +3,15 @@ import { Post, useAddPostMutation } from './postApi';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { is } from 'immer/dist/internal';
 
 const PostAdd: FC = () => {
-  const [addPost, { isLoading }] = useAddPostMutation();
+  const [addPost, { isLoading, isSuccess, isError, error }] =
+    useAddPostMutation();
+  const navigate = useNavigate();
+
+  if (isSuccess) navigate('/');
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('title is required'),
@@ -26,7 +32,7 @@ const PostAdd: FC = () => {
 
   const onSubmit = async (data: Partial<Post>) => {
     //console.log(JSON.stringify(data, null, 2));
-    // await addPost(data);
+    await addPost(data);
   };
 
   return (
