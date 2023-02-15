@@ -4,8 +4,8 @@ import { Counter } from './features/counter/Counter';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
-import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import PostsManager from './features/post/PostsManager';
+import { NavLink, Route, Routes } from 'react-router-dom';
+import PostsManager from './features/post/PostList';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from './features/auth/authApi';
@@ -16,9 +16,9 @@ import {
   MDBNavbar,
   MDBNavbarBrand,
   MDBNavbarItem,
-  MDBNavbarLink,
   MDBNavbarNav,
 } from 'mdb-react-ui-kit';
+import PostDetail from './features/post/PostDetail';
 
 function App() {
   const [login] = useLoginMutation();
@@ -72,6 +72,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<PostsManager />}></Route>
+        <Route path="/:id" element={<PostDetail />}></Route>
         <Route path="/counter" element={<Counter />}></Route>
         <Route></Route>
       </Routes>
