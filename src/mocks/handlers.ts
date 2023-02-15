@@ -22,6 +22,8 @@ state = adapter.setAll(state, [
   },
 ]);
 
+let startingId = 3;
+
 export { state };
 
 export const handlers = [
@@ -38,5 +40,12 @@ export const handlers = [
   }),
   rest.get('/posts', (req, res, ctx) => {
     return res(ctx.json(Object.values(state.entities)));
+  }),
+  rest.post('/posts', (req, res, ctx) => {
+    const post = req.json() as Partial<Post>;
+    ++startingId;
+    state = adapter.addOne(state, { ...post, id: startingId } as Post);
+    console.log(state);
+    return res(ctx.json(Object.values(state.entities)), ctx.delay(400));
   }),
 ];

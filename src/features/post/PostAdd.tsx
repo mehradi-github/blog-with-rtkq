@@ -1,36 +1,81 @@
 import React, { FC } from 'react';
+import { Post, useAddPostMutation } from './postApi';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
 const PostAdd: FC = () => {
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+  const [addPost, { isLoading }] = useAddPostMutation();
+
+  const validationSchema = Yup.object().shape({
+    title: Yup.string().required('title is required'),
+    body: Yup.string()
+      .required('Body is required')
+      .min(20, 'Body must be at least 20 characters')
+      .max(200, 'Body must not exceed 200 characters'),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Partial<Post>>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = async (data: Partial<Post>) => {
+    //console.log(JSON.stringify(data, null, 2));
+    // await addPost(data);
   };
+
   return (
     <div className="d-flex justify-content-center mt-5 ">
-      <form className="w-50">
-        <div className="form-outline mb-4">
-          <input
-            type="text"
-            id="title"
-            className="form-control border border-1"
-          />
+      <form className="w-50" onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-group mb-4">
           <label className="form-label" htmlFor="title">
             Title
           </label>
-        </div>
-        <div className="form-outline mb-4">
-          <textarea
-            rows={4}
-            id="body"
-            className="form-control border border-1"
+          <input
+            type="text"
+            id="title"
+            className={`form-control border border-1 ${
+              errors.title ? 'is-invalid' : ''
+            }`}
+            {...register('title')}
           />
+          <div className="invalid-feedback">{errors.title?.message}</div>
+        </div>
+        <div className="form-group mb-4">
           <label className="form-label" htmlFor="body">
             Body
           </label>
+          <textarea
+            rows={4}
+            id="body"
+            className={`form-control border border-1 ${
+              errors.body ? 'is-invalid' : ''
+            }`}
+            {...register('body')}
+          />
+          <div className="invalid-feedback">{errors.body?.message}</div>
         </div>
-
-        <button type="submit" className="btn btn-success btn-block">
-          Add
-        </button>
+        <div className="form-group d-flex justify-content-end">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Adding ...' : 'Add Post'}
+          </button>
+          <button
+            type="button"
+            onClick={() => reset()}
+            className="btn btn-warning float-right"
+          >
+            Reset
+          </button>
+        </div>
       </form>
     </div>
   );

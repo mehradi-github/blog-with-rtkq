@@ -31,5 +31,6 @@ export const postApi = api.injectEndpoints({
 
 export const {
   useGetPostsQuery,
+  useAddPostMutation,
   endpoints: { getPosts },
 } = postApi;
