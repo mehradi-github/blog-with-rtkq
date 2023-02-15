@@ -19,6 +19,7 @@ import {
   MDBNavbarNav,
 } from 'mdb-react-ui-kit';
 import PostDetail from './features/post/PostDetail';
+import PostAdd from './features/post/PostAdd';
 
 function App() {
   const [login] = useLoginMutation();
@@ -72,6 +73,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<PostsManager />}></Route>
+        <Route path="/add" element={<PostAdd />}></Route>
         <Route path="/:id" element={<PostDetail />}></Route>
         <Route path="/counter" element={<Counter />}></Route>
         <Route></Route>

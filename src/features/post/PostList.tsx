@@ -1,6 +1,18 @@
+import { MDBBtn } from 'mdb-react-ui-kit';
 import React, { FC, Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Post, useGetPostsQuery } from './postApi';
+
+const AddPost = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="d-flex justify-content-end my-5 mx-3">
+      <MDBBtn color="success" className="me-1" onClick={() => navigate('/add')}>
+        Add Post
+      </MDBBtn>
+    </div>
+  );
+};
 
 const ListItem = ({
   data: { id, title, body },
@@ -54,6 +66,7 @@ const List = () => {
 const PostList: FC = () => {
   return (
     <Fragment>
+      <AddPost />
       <List />
     </Fragment>
   );
