@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from 'react';
 
-const PostsManager: FC = () => {
+const PostList: FC = () => {
   return <Fragment></Fragment>;
 };
-export default PostsManager;
+export default PostList;
