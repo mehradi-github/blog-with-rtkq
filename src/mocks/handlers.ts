@@ -23,6 +23,7 @@ state = adapter.setAll(state, [
 ]);
 
 export { state };
+
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
     return res.once(ctx.json({ message: 'I fail once.' }), ctx.status(500));
@@ -35,7 +36,7 @@ export const handlers = [
       })
     );
   }),
-  // rest.get('/posts', (req, res, ctx) => {
-  //   return res(ctx.json(Object.values(state.entities)));
-  // }),
+  rest.get('/posts', (req, res, ctx) => {
+    return res(ctx.json(Object.values(state.entities)));
+  }),
 ];
