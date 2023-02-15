@@ -2,12 +2,24 @@ import { rest } from 'msw';
 import { createEntityAdapter, nanoid } from '@reduxjs/toolkit';
 import { Post } from '../features/post/postApi';
 
-const adapter = createEntityAdapter<Post>();
 const token = nanoid();
+
+const adapter = createEntityAdapter<Post>();
 let state = adapter.getInitialState();
 state = adapter.setAll(state, [
-  { id: 1, name: 'A sample post 1', fetched_at: new Date().toUTCString() },
-  { id: 2, name: 'A sample post 2', fetched_at: new Date().toUTCString() },
+  {
+    id: 1,
+    title: 'Culpa fugiat pariatur magna aliqua.',
+    body: 'Qui duis fugiat exercitation eiusmod ipsum duis excepteur exercitation enim et nisi. Dolor ullamco sit dolore cupidatat id amet id veniam commodo irure minim. Ea sint ea ad excepteur duis eu. Dolore aliquip sunt officia enim cillum ex Lorem et mollit adipisicing proident.',
+    fetched_at: new Date().toUTCString(),
+  },
+
+  {
+    id: 2,
+    title: 'Elit sit mollit voluptate enim et dolore eiusmod ex.',
+    body: 'Culpa sint Lorem veniam reprehenderit enim consequat. Consequat ut ex mollit commodo consequat ullamco. Consectetur et exercitation sit est Lorem voluptate amet do magna officia adipisicing incididunt veniam. Consectetur fugiat do eiusmod occaecat irure ad amet occaecat est elit velit est nulla cupidatat. Excepteur exercitation pariatur aute voluptate cillum sunt sint sint cillum sunt laborum amet.',
+    fetched_at: new Date().toUTCString(),
+  },
 ]);
 
 export { state };
