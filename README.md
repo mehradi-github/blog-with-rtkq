@@ -61,7 +61,7 @@ ESLint Plugin for Jest DOM
 ```bash
 #Install plugins
 npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library
-npm i react-hook-form yup @hookform/resolvers
+npm i redux-persist react-hook-form yup @hookform/resolvers
 # git remote set url
 git remote set-url origin git@github.com:mehradi-github/ref-blog-with-rtkq.git
 ```
