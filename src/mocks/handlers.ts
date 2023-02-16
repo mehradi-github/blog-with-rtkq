@@ -52,4 +52,9 @@ export const handlers = [
     // console.log(state);
     return res(ctx.json(Object.values(state.entities)), ctx.delay(400));
   }),
+  rest.delete('/posts/:id', (req, res, ctx) => {
+    const { id } = req.params as { id: string };
+    state = adapter.removeOne(state, id);
+    return res(ctx.json({ id, success: true }), ctx.delay(400));
+  }),
 ];
