@@ -41,6 +41,10 @@ export const handlers = [
   rest.get('/posts', (req, res, ctx) => {
     return res(ctx.json(Object.values(state.entities)));
   }),
+  rest.get('/posts/:id', (req, res, ctx) => {
+    const { id } = req.params as { id: string };
+    return res(ctx.json(state.entities[id]), ctx.delay(400));
+  }),
   rest.post('/posts', async (req, res, ctx) => {
     const post = (await req.json()) as Partial<Post>;
     startingId += 1;
