@@ -9,7 +9,11 @@ const AddPost = () => {
   const navigate = useNavigate();
   return (
     <div className="d-flex justify-content-end my-5 mx-3">
-      <MDBBtn color="success" className="me-1" onClick={() => navigate('/add')}>
+      <MDBBtn
+        color="success"
+        className="me-1"
+        onClick={() => navigate('/post')}
+      >
         Add Post
       </MDBBtn>
     </div>
