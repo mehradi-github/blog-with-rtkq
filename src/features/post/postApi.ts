@@ -4,7 +4,7 @@ export interface Post {
   id: number;
   title: string;
   body: string;
-  fetched_at: string;
+  // fetched_at: string;
 }
 
 type PostResponse = Post[];
@@ -30,6 +30,13 @@ export const postApi = api.injectEndpoints({
       query: (id) => ({ url: `posts/${id}` }),
       providesTags: (_post, _err, id) => [{ type: 'Posts', id }],
     }),
+    deletePost: build.mutation<{ success: boolean; id: number }, number>({
+      query: (id) => ({
+        url: `post/${id}`,
+        method: 'DELTETE',
+      }),
+      invalidatesTags: (post) => [{ type: 'Posts', id: post?.id }],
+    }),
   }),
 });
 
@@ -37,5 +44,6 @@ export const {
   useGetPostsQuery,
   useAddPostMutation,
   useGetPostQuery,
+  useDeletePostMutation,
   endpoints: { getPosts },
 } = postApi;
