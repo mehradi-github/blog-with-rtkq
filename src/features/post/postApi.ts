@@ -4,7 +4,7 @@ export interface Post {
   id: number;
   title: string;
   body: string;
-  // fetched_at: string;
+  fetched_at: string;
 }
 
 type PostResponse = Post[];
@@ -32,10 +32,13 @@ export const postApi = api.injectEndpoints({
     }),
     deletePost: build.mutation<{ success: boolean; id: number }, number>({
       query: (id) => ({
-        url: `post/${id}`,
-        method: 'DELTETE',
+        url: `posts/${id}`,
+        method: 'DELETE',
       }),
-      invalidatesTags: (post) => [{ type: 'Posts', id: post?.id }],
+      invalidatesTags: (post) => [
+        { type: 'Posts', id: post?.id },
+        { type: 'Posts', id: 'LIST' },
+      ],
     }),
   }),
 });

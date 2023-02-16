@@ -21,7 +21,7 @@ const ListItem = ({
   onSelect,
 }: {
   data: Post;
-  onSelect: (id: number) => void;
+  onSelect: (i: number) => void;
 }) => {
   return (
     <div className="card">
@@ -58,7 +58,9 @@ const List = () => {
         <ListItem
           key={post.id}
           data={post}
-          onSelect={(id) => navigate(`/${id}`)}
+          onSelect={(i) => {
+            navigate(`/${i}`);
+          }}
         />
       ))}
     </div>

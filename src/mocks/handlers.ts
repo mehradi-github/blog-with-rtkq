@@ -47,14 +47,15 @@ export const handlers = [
   }),
   rest.post('/posts', async (req, res, ctx) => {
     const post = (await req.json()) as Partial<Post>;
-    startingId += 1;
     state = adapter.addOne(state, { ...post, id: startingId } as Post);
+    startingId += 1;
     // console.log(state);
     return res(ctx.json(Object.values(state.entities)), ctx.delay(400));
   }),
   rest.delete('/posts/:id', (req, res, ctx) => {
     const { id } = req.params as { id: string };
     state = adapter.removeOne(state, id);
+    startingId -= 1;
     return res(ctx.json({ id, success: true }), ctx.delay(400));
   }),
 ];
