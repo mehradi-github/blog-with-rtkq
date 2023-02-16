@@ -1,6 +1,8 @@
 import { MDBBtn } from 'mdb-react-ui-kit';
 import React, { FC, Fragment } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectIsAuthenticated } from '../auth/authSlice';
 import { Post, useGetPostsQuery } from './postApi';
 
 const AddPost = () => {
@@ -64,9 +66,10 @@ const List = () => {
 };
 
 const PostList: FC = () => {
+  const isAuthenticated = useSelector(selectIsAuthenticated);
   return (
     <Fragment>
-      <AddPost />
+      {isAuthenticated ? <AddPost /> : ''}
       <List />
     </Fragment>
   );

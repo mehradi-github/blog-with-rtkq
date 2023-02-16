@@ -4,12 +4,16 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { is } from 'immer/dist/internal';
+// import { useSelector } from 'react-redux';
+// import { selectIsAuthenticated } from '../auth/authSlice';
 
 const PostAdd: FC = () => {
-  const [addPost, { isLoading, isSuccess, isError, error }] =
-    useAddPostMutation();
+  // const isAuthenticated = useSelector(selectIsAuthenticated);
   const navigate = useNavigate();
+
+  // if (!isAuthenticated) navigate('/');
+
+  const [addPost, { isLoading, isSuccess }] = useAddPostMutation();
 
   if (isSuccess) navigate('/');
 

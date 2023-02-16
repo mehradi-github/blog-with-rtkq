@@ -4,7 +4,7 @@ import { Counter } from './features/counter/Counter';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Navigate, NavLink, Outlet, Route, Routes } from 'react-router-dom';
 import PostsManager from './features/post/PostList';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,6 +25,18 @@ function App() {
   const [login] = useLoginMutation();
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const dispatch = useDispatch();
+  interface Protected {
+    isAllowed: boolean;
+    redirectPath: string;
+    children?: JSX.Element;
+  }
+  const ProtectedRoute = (p: Protected) => {
+    if (!p.isAllowed) {
+      return <Navigate to={p.redirectPath} replace />;
+    }
+
+    return p.children ? p.children : <Outlet />;
+  };
 
   return (
     <div>
@@ -73,7 +85,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={<PostsManager />}></Route>
-        <Route path="/add" element={<PostAdd />}></Route>
+        <Route
+          element={
+            <ProtectedRoute isAllowed={isAuthenticated} redirectPath="/" />
+          }
+        >
+          <Route path="/add" element={<PostAdd />}></Route>
+        </Route>
         <Route path="/:id" element={<PostDetail />}></Route>
         <Route path="/counter" element={<Counter />}></Route>
         <Route></Route>
