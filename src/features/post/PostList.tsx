@@ -63,7 +63,7 @@ const List = () => {
           key={post.id}
           data={post}
           onSelect={(i) => {
-            navigate(`/${i}`);
+            navigate(`post/${i}`);
           }}
         />
       ))}
