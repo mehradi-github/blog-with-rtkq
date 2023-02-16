@@ -26,11 +26,16 @@ export const postApi = api.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Posts', id: 'LIST' }],
     }),
+    getPost: build.query<Post, number>({
+      query: (id) => ({ url: `posts/${id}` }),
+      providesTags: (_post, _err, id) => [{ type: 'Posts', id }],
+    }),
   }),
 });
 
 export const {
   useGetPostsQuery,
   useAddPostMutation,
+  useGetPostQuery,
   endpoints: { getPosts },
 } = postApi;
