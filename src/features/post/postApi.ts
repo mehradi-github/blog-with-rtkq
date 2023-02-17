@@ -60,5 +60,6 @@ export const {
   useAddPostMutation,
   useGetPostQuery,
   useDeletePostMutation,
+  useUpdatePostMutation,
   endpoints: { getPosts },
 } = postApi;
