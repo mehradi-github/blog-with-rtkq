@@ -26,6 +26,13 @@ const PostDetail = () => {
       <div className="d-flex my-5 mx-3 justify-content-end">
         <button
           type="button"
+          className="btn btn-success me-1"
+          onClick={() => navigate(`/post/edit/${postId}`)}
+        >
+          Edit
+        </button>
+        <button
+          type="button"
           className="btn btn-danger"
           onClick={() => deletePost(postId)}
         >
