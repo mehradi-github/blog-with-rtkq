@@ -58,4 +58,11 @@ export const handlers = [
     startingId -= 1;
     return res(ctx.json({ id, success: true }), ctx.delay(400));
   }),
+  rest.put('/posts/:id', async (req, res, ctx) => {
+    const { id } = req.params as { id: string };
+    const changes = (await req.json()) as Partial<Post>;
+
+    state = adapter.updateOne(state, { id, changes });
+    return res(ctx.json(state.entities[id]), ctx.delay(400));
+  }),
 ];
