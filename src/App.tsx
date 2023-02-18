@@ -4,7 +4,7 @@ import { Counter } from './features/counter/Counter';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import PostsManager from './features/post/PostList';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -92,6 +92,9 @@ function App() {
           <Route path="edit/:id" element={<PostEdit />}></Route>
         </Route>
         <Route path="/counter" element={<Counter />}></Route>
+
+        {/* Catch all - replace with 404 component if you want */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
 
