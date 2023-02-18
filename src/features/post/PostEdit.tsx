@@ -62,9 +62,9 @@ const PostEdit: FC = () => {
   // const onTitleChanged = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   // const onBodyChanged = (e: React.ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value);
 
-  const onSubmit = async (data: Partial<Post>) => {
-    //console.log(JSON.stringify(data, null, 2));
-    await updatePost(data);
+  const onSubmit = (data: Partial<Post>) => {
+    console.log({ ...data });
+    updatePost({ id: post.id, ...data });
   };
 
   return (
@@ -104,7 +104,7 @@ const PostEdit: FC = () => {
             className="btn btn-primary"
             disabled={isLoading}
           >
-            {isLoading ? 'Editing ...' : 'Edit Post'}
+            {isLoading ? 'Updateing ...' : 'Update'}
           </button>
           <button
             type="button"
