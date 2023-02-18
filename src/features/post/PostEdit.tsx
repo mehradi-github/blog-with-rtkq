@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Post, useGetPostQuery, useUpdatePostMutation } from './postApi';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -30,8 +30,22 @@ const PostEdit: FC = () => {
     reset,
     formState: { errors },
   } = useForm<Partial<Post>>({
+    defaultValues: {
+      title: post?.title,
+      body: post?.body,
+    },
     resolver: yupResolver(validationSchema),
   });
+
+  // const [title, setTitle] = useState('');
+  // const [body, setBody] = useState('');
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setTitle(post.title);
+  //     setBody(post.body);
+  //   }
+  // }, [isSuccess, post?.title, post?.body]);
 
   if (isSuccess) navigate('/');
 
@@ -44,6 +58,9 @@ const PostEdit: FC = () => {
       <div className="d-flex justify-content-center mt-5">Missing post!</div>
     );
   }
+
+  // const onTitleChanged = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
+  // const onBodyChanged = (e: React.ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value);
 
   const onSubmit = async (data: Partial<Post>) => {
     //console.log(JSON.stringify(data, null, 2));
@@ -58,7 +75,6 @@ const PostEdit: FC = () => {
             Title
           </label>
           <input
-            value={post.title}
             type="text"
             id="title"
             className={`form-control border border-1 ${
@@ -73,7 +89,6 @@ const PostEdit: FC = () => {
             Body
           </label>
           <textarea
-            value={post.body}
             rows={4}
             id="body"
             className={`form-control border border-1 ${
