@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
+import { REHYDRATE } from 'redux-persist';
 import { RootState } from '../store';
 
 export const api = createApi({
@@ -17,5 +18,10 @@ export const api = createApi({
     { maxRetries: 3 }
   ),
   tagTypes: ['Posts'],
+  // extractRehydrationInfo(action, { reducerPath }) {
+  //   if (action.type === REHYDRATE) {
+  //     return action.payload[reducerPath];
+  //   }
+  // },
   endpoints: () => ({}),
 });

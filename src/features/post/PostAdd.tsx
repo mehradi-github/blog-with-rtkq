@@ -15,7 +15,7 @@ const PostAdd: FC = () => {
 
   const [addPost, { isLoading, isSuccess }] = useAddPostMutation();
 
-  if (isSuccess) navigate('/');
+  // if (isSuccess) navigate('/');
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('title is required'),
@@ -36,7 +36,12 @@ const PostAdd: FC = () => {
 
   const onSubmit = async (data: Partial<Post>) => {
     //console.log(JSON.stringify(data, null, 2));
-    await addPost(data);
+    try {
+      await addPost(data).unwrap();
+      navigate('/');
+    } catch (err) {
+      console.error('Failed to save the post', err);
+    }
   };
 
   return (
@@ -73,10 +78,10 @@ const PostAdd: FC = () => {
         <div className="form-group d-flex justify-content-end">
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary me-1"
             disabled={isLoading}
           >
-            {isLoading ? 'Adding ...' : 'Add Post'}
+            {isLoading ? 'Adding ...' : 'Add'}
           </button>
           <button
             type="button"

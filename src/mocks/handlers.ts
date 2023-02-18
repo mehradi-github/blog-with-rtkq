@@ -39,6 +39,7 @@ export const handlers = [
     );
   }),
   rest.get('/posts', (req, res, ctx) => {
+    console.log('hadler state', state.entities);
     return res(ctx.json(Object.values(state.entities)));
   }),
   rest.get('/posts/:id', (req, res, ctx) => {

@@ -47,7 +47,7 @@ const PostEdit: FC = () => {
   //   }
   // }, [isSuccess, post?.title, post?.body]);
 
-  if (isSuccess) navigate('/');
+  // if (isSuccess) navigate('/');
 
   if (isLoadingGet) {
     return <div className="d-flex justify-content-center mt-5">Loading...</div>;
@@ -62,9 +62,14 @@ const PostEdit: FC = () => {
   // const onTitleChanged = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   // const onBodyChanged = (e: React.ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value);
 
-  const onSubmit = (data: Partial<Post>) => {
+  const onSubmit = async (data: Partial<Post>) => {
     console.log({ ...data });
-    updatePost({ id: post.id, ...data });
+    try {
+      await updatePost({ id: post.id, ...data }).unwrap();
+      navigate('/');
+    } catch (err) {
+      console.error('Failed to update the post', err);
+    }
   };
 
   return (
@@ -101,7 +106,7 @@ const PostEdit: FC = () => {
         <div className="form-group d-flex justify-content-end">
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary me-1"
             disabled={isLoading}
           >
             {isLoading ? 'Updateing ...' : 'Update'}
